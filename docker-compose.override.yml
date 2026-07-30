@@ -1,0 +1,10 @@
+services:
+  vectorstore-service:
+    build:
+      context: .
+    volumes:
+      - ./app:/srv/app
+      - ../add-ai-core:/add-ai-core
+    command: >
+      sh -c "pip install -e /add-ai-core &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8004 --reload"
